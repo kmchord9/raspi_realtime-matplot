@@ -17,8 +17,15 @@ def randomTemp():
 def pause_plot():
     fig, ax = plt.subplots(1,1)
 
+    xVal = np.empty(0)
+    yVal = np.empty(0)
+    lines, = ax.plot(xVal,yVal)
+
     todayData = []
     try:
+        #global xVal
+        #global yVal
+
         todayData = loadTodayCSV()
         xVal = np.array([datetime.datetime.strptime(data, '%Y/%M/%S %H:%M:%S') \
                           for data in todayData[0]])
