@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 import random
-from adt7410_13bit import getTemp
+#from adt7410_13bit import getTemp
 from csvModule import saveCSV
 
 SAVE_CYCLE_TIME = 1
@@ -19,14 +19,14 @@ def pause_plot():
 
     dt_now = datetime.datetime.now()
     xVal = np.array([ dt_now ])
-    yVal = np.array([getTemp()])
+    yVal = np.array([randomTemp()])
     lines, = ax.plot(xVal,yVal)
 
     while True:
 
         #今の時間と温度を取得
         dt_now = datetime.datetime.now()
-        tm_now = getTemp()
+        tm_now = randomTemp()
 
         #csvに保存
         saveCSV(dt_now, tm_now)
