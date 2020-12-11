@@ -20,9 +20,14 @@ def pause_plot():
 
     while True:
 
+        #今の時間と温度を取得
         dt_now = datetime.datetime.now()
         tm_now = getTemp()
 
+        #csvに保存
+        saveCSV(dt_now, tm_now)
+
+        #設定した数より多い場合には先頭を消して末尾に追加
         if xVal.size > MAX_SHOW_ELEMENT_N:
             xVal = np.roll(xVal, -1)
             yVal = np.roll(yVal, -1)
