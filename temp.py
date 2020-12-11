@@ -46,6 +46,7 @@ def pause_plot():
 
         lines.set_data(xVal,yVal)
         ax.set_xlim((xVal.min(), xVal.max()))
+        ax.set_ylim((yVal.min(), yVal.max()))
         plt.pause(SAVE_CYCLE_TIME)
 
 
