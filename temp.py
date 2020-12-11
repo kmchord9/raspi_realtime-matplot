@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import datetime
 import random
 #from adt7410_13bit import getTemp
-from csvModule import saveCSV
+from csvModule import saveCSV, loadTodayCSV
 
 SAVE_CYCLE_TIME = 1
 SAVE_PATH = "./datalog/"
@@ -17,10 +17,22 @@ def randomTemp():
 def pause_plot():
     fig, ax = plt.subplots(1,1)
 
-    dt_now = datetime.datetime.now()
-    xVal = np.array([ dt_now ])
-    yVal = np.array([randomTemp()])
-    lines, = ax.plot(xVal,yVal)
+    todayData = []
+    try:
+        todayData = loadTodayCSV()
+        xVal = np.array([datetime.datetime.strptime(data, '%Y/%M/%S %H:%M:%S') \
+                          for data in todayData[0]])
+        yVal = np.array(todayData[1])
+        lines, = ax.plot(xVal,yVal)
+
+    except FileNotFoundError as e:
+        dt_now = datetime.datetime.now()
+        xVal = np.array([ dt_now ])
+        yVal = np.array([randomTemp()])
+        lines, = ax.plot(xVal,yVal)
+
+    except Exception as e:
+        print(e)
 
     while True:
 
@@ -52,4 +64,3 @@ def pause_plot():
 
 if __name__=="__main__":
     pause_plot()
-
