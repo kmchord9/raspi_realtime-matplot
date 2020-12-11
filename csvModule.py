@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 import csv
 import datetime
 
@@ -9,3 +11,23 @@ def saveCSV(time, data, save_path="./datalog/"):
         addStr = strTime + "\t" + str(data)
         
         print(addStr, file=f)
+
+def loadTodayCSV():
+    save_path = "./datalog/"
+    now_str = datetime.datetime.now().strftime("%Y%m%d")
+    filename = save_path + now_str + ".csv"
+
+    csv_file = open(filename, 'r')
+
+    xdata = []
+    ydata = []
+    reVal = []
+
+    for row in csv.reader(csv_file, delimiter='\t'):
+        xdata.append(row[0])
+        ydata.append(row[1])
+
+    reVal.append(xdata)
+    reVal.append(ydata)
+
+    return reVal
