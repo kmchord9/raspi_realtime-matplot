@@ -3,12 +3,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
+import random
 from adt7410_13bit import getTemp
 from csvModule import saveCSV
 
 SAVE_CYCLE_TIME = 1
 SAVE_PATH = "./datalog/"
 MAX_SHOW_ELEMENT_N = 540
+
+def randomTemp():
+    return random.random()*20
 
 def pause_plot():
     fig, ax = plt.subplots(1,1)
