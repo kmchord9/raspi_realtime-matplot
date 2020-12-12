@@ -12,27 +12,18 @@ SAVE_PATH = "./datalog/"
 MAX_SHOW_ELEMENT_N = 540
 
 def randomTemp():
-    return random.random()*20
+    return np.round(random.random()*20,2)
 
 def pause_plot():
     fig, ax = plt.subplots(1,1)
 
-    xVal = np.empty(0)
-    yVal = np.empty(0)
-    lines, = ax.plot(xVal,yVal)
-
     todayData = []
     try:
-        #global xVal
-        #global yVal
 
         todayData = loadTodayCSV()
-        xVal = np.array([datetime.datetime.strptime(data, '%Y/%m/%d %H:%M:%S') \
-                          for data in todayData[0]])
+        xVal = np.array(todayData[0])
         yVal = np.array(todayData[1])
         lines, = ax.plot(xVal,yVal)
-
-        print(xVal[0])
 
     except FileNotFoundError as e:
         dt_now = datetime.datetime.now()
@@ -73,12 +64,3 @@ def pause_plot():
 
 if __name__=="__main__":
     pause_plot()
-    #todayData = []
-    #todayData = loadTodayCSV()
-    #print(a)
-    #xval = np.array([datetime.datetime.strptime(data, '%y/%m/%s %h:%m:%s') \
-    #                      for data in todaydata[0]])
-    #print(xVal)
-    #tstr = '2020/12/11 16:53:27'
-
-    #print(datetime.datetime.strptime(tstr, '%Y/%m/%d %H:%M:%S'))
