@@ -26,8 +26,8 @@ def loadTodayCSV():
     for row in csv.reader(csv_file, delimiter='\t'):
         xdata.append(row[0])
         ydata.append(row[1])
-
-    reVal.append(xdata)
-    reVal.append(ydata)
+        
+    reVal.append([datetime.datetime.strptime(data, '%Y/%m/%d %H:%M:%S') for data in xdata])
+    reVal.append([float(data) for data in ydata])
 
     return reVal
