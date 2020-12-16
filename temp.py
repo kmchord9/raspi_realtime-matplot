@@ -20,7 +20,7 @@ def pause_plot():
     todayData = []
     try:
 
-        todayData = loadTodayCSV()
+        todayData = loadTodayCSV(MAX_SHOW_ELEMENT_N)
         xVal = np.array(todayData[0])
         yVal = np.array(todayData[1])
         lines, = ax.plot(xVal,yVal)
