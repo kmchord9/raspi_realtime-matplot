@@ -7,7 +7,8 @@
 ### 依存ライブラリをインストール
 
 ```
-pip3 install numpy matplotlib
+pip3 install --upgrade Pillow==6.2.1
+pip3 install matplotlib
 ```
 
 ## matplotlibでリアルタイムのデータを表示する
