@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import smbus2 as smbus
-
+import smbus
+import numpy as np
 
 def getTemp():
     bus = smbus.SMBus(1)
@@ -19,7 +19,7 @@ def getTemp():
     data = data >> 3
 
     # 16で割って温度に
-    return data/16.
+    return np.round(data/16.,2)
 
 if __name__=="__main__":
     print(getTemp())
