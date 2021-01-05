@@ -25,17 +25,18 @@ def loadTodayCSV(maxelementN, getdate="today"):
 
   xdata = []
   ydata = []
-  reVal = []
 
   for row in csv.reader(csv_file, delimiter='\t'):
     xdata.append(row[0])
     ydata.append(row[1])
-        
-  if len(xdata) < maxelementN: 
-    reVal.append([datetime.datetime.strptime(data, '%Y/%m/%d %H:%M:%S') for data in xdata])
-    reVal.append([float(data) for data in ydata])
-  else:
-    reVal.append([datetime.datetime.strptime(data, '%y/%m/%d %h:%m:%s') for data in xdata][:maxelementN])
-    reVal.append([float(data) for data in ydata][:maxelementN])
 
-  return reVal
+  xdata_str = [datetime.datetime.strptime(data, '%Y/%m/%d %H:%M:%S') for data in xdata]
+  ydata_str = [float(data) for data in ydata]
+
+  if len(xdata) < maxelementN:
+      return [xdata_str, ydata_str]
+
+  else:
+      rexdata_str = xdata_str[max(0,len(xdata_str)-maxelementN):]
+      reydata_str = ydata_str[max(0,len(ydata_str)-maxelementN):]
+      return [rexdata_str, reydata_str]
