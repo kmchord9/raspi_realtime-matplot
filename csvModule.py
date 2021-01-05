@@ -14,7 +14,7 @@ def saveCSV(time, data, save_path="./datalog/"):
 
 def loadTodayCSV(maxelementN, getdate="today"):
   save_path = "./datalog/"
-  if not (getdate=="today"):
+  if (getdate=="today"):
     now_str = datetime.datetime.now().strftime("%Y%m%d")
     filename = save_path + now_str + ".csv"
   else:
@@ -31,7 +31,7 @@ def loadTodayCSV(maxelementN, getdate="today"):
     xdata.append(row[0])
     ydata.append(row[1])
         
-  if xdata < maxelementN: 
+  if len(xdata) < maxelementN: 
     reVal.append([datetime.datetime.strptime(data, '%Y/%m/%d %H:%M:%S') for data in xdata])
     reVal.append([float(data) for data in ydata])
   else:
