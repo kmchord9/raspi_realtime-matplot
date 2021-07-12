@@ -10,7 +10,12 @@
 pip3 install --upgrade Pillow==6.2.1
 pip3 install matplotlib
 ```
-
+### raspberryOSの場合には
+```
+pip3 install matplotlib
+sudo apt-get install libatlas-base-dev
+sudo apt-get install python3-gi-cairo
+```
 ## matplotlibでリアルタイムのデータを表示する
 
 ```
